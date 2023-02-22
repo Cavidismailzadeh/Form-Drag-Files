@@ -1,0 +1,28 @@
+
+
+.item{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+#drag-Elem1{
+    background-color: magenta;
+}
+
+#drag-Elem2{
+    background-color: yellow;
+}
+
+
+#drag-Elem3{
+    background-color: blueviolet;
+}
+
+
+#drop-Elem{
+    background-color: cadetblue;
+    width: 500px;
+    height: 400px;
+    float: right;
+}
