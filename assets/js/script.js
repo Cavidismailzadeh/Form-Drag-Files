@@ -1,6 +1,6 @@
 "use strict"
 
- 
+
 
 // let formElem = document.querySelector("form");
 
@@ -15,7 +15,7 @@
 //         writeWord(document.getElementById("exampleInputEmail1").value );
 //     }else{
 //         document.querySelector("span").classList.remove("d-none");
-    
+
 //     }
 
 // })
@@ -33,8 +33,7 @@
 // })
 
 
-let dragElems = document.querySelectorAll(".item");
-let dropElem = document.getElementById("drop-Elem");
+
 
 
 // dragElem.ondrag = () =>{
@@ -46,54 +45,112 @@ let dropElem = document.getElementById("drop-Elem");
 // }
 
 
+//main
 
-// dragElem.ondragstart = (e) =>{
-//     e.dataTransfer.setData("id", dragElem.getAttribute("id"))
+// let dragElems = document.querySelectorAll(".item");
+// let dropElem = document.getElementById("drop-Elem");
+
+
+
+// dragElems.forEach(element => {
+
+//     element.ondragstart = (e) =>{
+//         e.dataTransfer.setData("id", element.getAttribute("id"))
+//     }    
+
+// });
+
+
+
+// dropElem.ondragover = (e) =>{
+//     e.preventDefault();
+// }
+
+
+
+// dropElem.ondrop = (e) =>{
+//    let id = e.dataTransfer.getData("id");
+
+//    let elem = document.getElementById(id);
+
+//    dropElem.append(elem);
+
+//    dropElem.append(document.getElementById(e.dataTransfer.getData("id")))
+
+
+
+// dragElems.forEach(element => {
+//     dropElem.append(element);
+// });
+
+// }
+
+
+
+// aletrnative 
+
+
+// dragElems.forEach(element => {
+//     element.addEventListener("dragstart",function(){
+//         dropElem.ondrop = () =>{
+//             dropElem.append(element)
+//         }
+//     })
+// })
+
+
+
+// dropElem.ondragover = (e) =>{
+//     e.preventDefault();
 // }
 
 
 
 
-dropElem.ondragover = (e) =>{
-    e.preventDefault();
-}
 
-
-
-dropElem.ondrop = (e) =>{
-//    let id = e.dataTransfer.getData("id");
-
-//    let elem = document.getElementById(id);
-   
-
-
-dragElems.forEach(element => {
-    dropElem.append(element);
-});
-  
-}
+//file upload
 
 
 
 
 
 
+let uploadIcon = document.querySelector("i");
+
+let table = document.querySelector(".table");
+
+uploadIcon.addEventListener("click", function () {
+    this.nextElementSibling.click();
+})
+
+
+uploadIcon.nextElementSibling.addEventListener("change", function (e) {
+
+    for (const file of e.target.files) {
+
+        let reader = new FileReader();
+
+        reader.onloadend = (event) => {
+
+            let fileBase64 = event.currentTarget.result
+
+
+            table.innerHTML += `
+             <tr>
+                <th scope="row">${file.name}</th>
+                <td>${file.size/1024} Kb</td>
+                <td>  <div class="img"><img src="${fileBase64}" alt=""></div></td>
+            </tr>`
+
+            document.querySelector("img").setAttribute("src", fileBase64)
+
+        }
+
+        reader.readAsDataURL(file);
+    }
+})
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-// dragElems.forEach(element => {
-//     element.addEventListener("dragstart",function(){
-//         console.log(element);
-//     })
-// })
